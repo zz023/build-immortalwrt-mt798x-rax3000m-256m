@@ -15,11 +15,11 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   TZ: Asia/Shanghai
-  DEVICE: 360t7
+  DEVICE: rax3000m
   UPLOAD_OUTPUT: true
 
 jobs:
-   _360t7:
+   _rax3000m:
     runs-on: ubuntu-20.04
     permissions:
       contents: write
@@ -65,14 +65,14 @@ jobs:
     - name: 修改 Lan IP
       run: |
         cd openwrt
-        sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+        sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generate
         neofetch
 
     - name: 下载依赖
       run: |
         cd openwrt
         make defconfig
-        make download -j8
+        make download -j10
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
@@ -102,4 +102,4 @@ jobs:
         body: |
           # 未测试×
           
-          IP: 192.168.2.1 | Password: none
+          IP: 192.168.5.1 | Password: none
