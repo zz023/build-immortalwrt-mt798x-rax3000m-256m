@@ -1,4 +1,4 @@
-name: Build
+name: Build_rax3000m
 
 on:
   repository_dispatch:
