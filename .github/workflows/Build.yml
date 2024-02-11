@@ -19,7 +19,18 @@ env:
   DEVICE: rax3000m
   UPLOAD_OUTPUT: true
   
-- name: 检查服务器配置
+ 
+jobs:
+   _rax3000m:
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: write
+
+    steps:
+    - name: 配置
+      uses: actions/checkout@master
+      
+    - name: 检查服务器配置
       if: (!cancelled())
       run: |
         echo "警告⚠"
@@ -37,16 +48,6 @@ env:
         echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
         echo "硬盘详情："
         df -Th
-
-jobs:
-   _rax3000m:
-    runs-on: ubuntu-20.04
-    permissions:
-      contents: write
-
-    steps:
-    - name: 配置
-      uses: actions/checkout@master
     
     - name: 配置环境
       env:
