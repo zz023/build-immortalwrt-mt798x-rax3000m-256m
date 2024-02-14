@@ -78,11 +78,6 @@ jobs:
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
-
-    - name: 配置 Feeds
-      run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        cd openwrt
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         cp -f $GITHUB_WORKSPACE/rax3000m_240206.config $GITHUB_WORKSPACE/openwrt/.config
