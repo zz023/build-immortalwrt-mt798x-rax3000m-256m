@@ -14,7 +14,7 @@ env:
   REPO_URL: https://github.com/zikura88/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: rax3000m_240218.config
+  CONFIG_FILE: rax3000m_240218_256m.config
   TZ: Asia/Shanghai
   DEVICE: rax3000m
   UPLOAD_OUTPUT: true
@@ -76,7 +76,7 @@ jobs:
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        cp -f $GITHUB_WORKSPACE/rax3000m_240218.config $GITHUB_WORKSPACE/openwrt/.config
+        cp -f $GITHUB_WORKSPACE/rax3000m_240218_256m.config $GITHUB_WORKSPACE/openwrt/.config
         ./scripts/feeds install -a
 
     - name: 修改 Lan IP
