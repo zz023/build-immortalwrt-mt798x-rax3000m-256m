@@ -1,4 +1,4 @@
-name: Build_rax3000m
+name: Build_rax3000m_256m
 
 on:
   repository_dispatch:
