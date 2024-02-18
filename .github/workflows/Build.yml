@@ -77,7 +77,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         cp -f $GITHUB_WORKSPACE/rax3000m_240206.config $GITHUB_WORKSPACE/openwrt/.config
-        ./scripts/feeds install -a
+        
 
     - name: 修改 Lan IP
       run: |
