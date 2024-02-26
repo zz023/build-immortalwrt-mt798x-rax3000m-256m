@@ -15,6 +15,7 @@ env:
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: rax3000m_256m_240226.config
+  DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   TZ: Asia/Shanghai
   DEVICE: rax3000m
@@ -71,6 +72,9 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        chmod +x $GITHUB_WORKSPACE/$DIY_P1_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P1_SH
         
     - name: 配置 Feeds
       run: |
@@ -80,9 +84,15 @@ jobs:
         #echo "src-git OpenClash https://github.com/vernesong/OpenClash.git" >> ./feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        chmod +x $GITHUB_WORKSPACE/$DIY_P2_SH && $GITHUB_WORKSPACE/$DIY_P2_SH
-        cp -f $GITHUB_WORKSPACE/rax3000m_256m_240226.config $GITHUB_WORKSPACE/openwrt/.config
-      
+        
+    - name: Load custom configuration
+      run: |
+        [ -e files ] && mv files openwrt/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x $GITHUB_WORKSPACE/$DIY_P1_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P2_SH
+        
     - name: 下载依赖
       run: |
         cd openwrt
