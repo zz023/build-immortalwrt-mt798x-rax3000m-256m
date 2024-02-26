@@ -14,7 +14,7 @@ env:
   REPO_URL: https://github.com/zikura88/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: rax3000m_256m_240224.config
+  CONFIG_FILE: rax3000m_256m_240226.config
   DIY_P2_SH: diy-part2.sh
   TZ: Asia/Shanghai
   DEVICE: rax3000m
@@ -81,7 +81,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         chmod +x $GITHUB_WORKSPACE/$DIY_P2_SH && $GITHUB_WORKSPACE/$DIY_P2_SH
-        cp -f $GITHUB_WORKSPACE/rax3000m_256m_240224.config $GITHUB_WORKSPACE/openwrt/.config
+        cp -f $GITHUB_WORKSPACE/rax3000m_256m_240226.config $GITHUB_WORKSPACE/openwrt/.config
       
     - name: 下载依赖
       run: |
