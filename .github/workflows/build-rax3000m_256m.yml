@@ -103,8 +103,8 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
       
-      - name: add clash core
-        run: |
+    - name: add clash core
+      run: |
         cd openwrt
         cp $GITHUB_WORKSPACE/clash.tar.gz /tmp/clash.tar.gz
         tar zxvf /tmp/clash.tar.gz -C /tmp >/dev/null 2>&1
