@@ -105,8 +105,11 @@ jobs:
 
     - name: add clash core
       run: |
-        cd openwrt/tmp
+        rm -rf ${HOME_PATH}/files/etc/openclash/core
+        mkdir -p ${HOME_PATH}/files/etc/openclash/core
+        cd ${HOME_PATH}/tmp
         wget -q https://raw.githubusercontent.com/vernesong/OpenClash/core/${OpenClash_branch}/dev/clash-${Archclash}.tar.gz -O clash.tar.gz
+        cd ~/openwrt
         tar zxvf /tmp/clash.tar.gz -C /tmp >/dev/null 2>&1
         chmod +x /tmp/clash >/dev/null 2>&1
         mkdir -p .../package/luci-app-openclash/files/etc/openclash/core
