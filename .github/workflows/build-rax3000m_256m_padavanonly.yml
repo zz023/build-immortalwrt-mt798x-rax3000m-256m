@@ -103,19 +103,6 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
-    - name: add clash core
-      run: |
-        rm -rf ${HOME_PATH}/files/etc/openclash/core
-        mkdir -p ${HOME_PATH}/files/etc/openclash/core
-        cd ${HOME_PATH}/tmp
-        wget -q https://raw.githubusercontent.com/vernesong/OpenClash/core/${OpenClash_branch}/dev/clash-${Archclash}.tar.gz -O clash.tar.gz
-        cd ~/openwrt
-        tar zxvf /tmp/clash.tar.gz -C /tmp >/dev/null 2>&1
-        chmod +x /tmp/clash >/dev/null 2>&1
-        mkdir -p .../package/luci-app-openclash/files/etc/openclash/core
-        mv /tmp/clash .../package/luci-app-openclash/files/etc/openclash/core/clash >/dev/null 2>&1
-        rm -rf /tmp/clash.tar.gz >/dev/null 2>&1 
-
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
