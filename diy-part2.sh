@@ -14,14 +14,14 @@
 sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generate
 
 # Modify hostname
-sed -i 's/ImmortalWrt/rax3000m_256m/g' package/base-files/files/bin/config_generate
+#sed -i 's/ImmortalWrt/rax3000m_256m/g' package/base-files/files/bin/config_generate
 
 #修改wifi名称（mtwifi-cfg）
-sed -i 's/ImmortalWrt-2.4G/OpenWrt/g' package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
-sed -i 's/ImmortalWrt-5G/OpenWrt5G/g' package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
+sed -i 's/ImmortalWrt-2.4G/n54u-2.4G/g' package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
+sed -i 's/ImmortalWrt-5G/n54u-5G/g' package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
 
 #修改闪存为256M版本
-sed -i 's/<0x580000 0x7200000>/<0x580000 0xee00000>/g' target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7981-cmcc-rax3000m.dts
-sed -i 's/116736k/240128k/g' target/linux/mediatek/image/mt7981.mk
+#sed -i 's/<0x580000 0x7200000>/<0x580000 0xee00000>/g' target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7981-cmcc-rax3000m.dts
+#sed -i 's/116736k/240128k/g' target/linux/mediatek/image/mt7981.mk
 
 
