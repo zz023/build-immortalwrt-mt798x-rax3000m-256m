@@ -103,15 +103,15 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
-    - name: add clash core
-      run: |
-        cd openwrt
-        cp /files/clash.tar.gz /tmp/clash.tar.gz
-        tar zxvf /tmp/clash.tar.gz -C /tmp >/dev/null 2>&1
-        chmod +x /tmp/clash >/dev/null 2>&1
-        mkdir -p .../package/luci-app-openclash/files/etc/openclash/core
-        mv /tmp/clash .../package/luci-app-openclash/files/etc/openclash/core/clash >/dev/null 2>&1
-        rm -rf /tmp/clash.tar.gz >/dev/null 2>&1 
+   # - name: add clash core
+    #  run: |
+     #   cd openwrt
+       # cp /files/clash.tar.gz /tmp/clash.tar.gz
+      #  tar zxvf /tmp/clash.tar.gz -C /tmp >/dev/null 2>&1
+        #chmod +x /tmp/clash >/dev/null 2>&1
+        #mkdir -p .../package/luci-app-openclash/files/etc/openclash/core
+        #mv /tmp/clash .../package/luci-app-openclash/files/etc/openclash/core/clash >/dev/null 2>&1
+        #rm -rf /tmp/clash.tar.gz >/dev/null 2>&1 
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
