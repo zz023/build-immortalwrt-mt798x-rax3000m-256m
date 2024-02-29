@@ -2,7 +2,7 @@
 
 * 默认整合所有路由基础功能(`pppoe`、`ipv6`、`防火墙`等)，其他功能均会在`Release`简介处列出。
 * 建议使用`Releases`内最新且标注“已测试”的固件。
-* 感谢hanwckf,padavanonly,kenzo等大佬。
+* 感谢P3TERX,hanwckf,padavanonly,kenzo等大佬。
 * 默认云编译cmcc_rax3000m_nand硬改256m版本
 * 如果要编译原厂128M闪存的版本，请将diy-part2.sh脚本里面sed前面的添加注释符号#再编译
 *   #修改闪存为256M版本
