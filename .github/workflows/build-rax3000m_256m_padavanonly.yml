@@ -33,7 +33,7 @@ env:
   UPLOAD_OUTPUT: true
 
 jobs:
-   _rax3000m:
+   _rax3000m_256m:
     runs-on: ubuntu-20.04
     permissions:
       contents: write
