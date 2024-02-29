@@ -26,4 +26,5 @@ sed -i 's/ImmortalWrt-5G/OpenWrt5G/g' package/mtk/applications/mtwifi-cfg/files/
 
 #删除冲突的软件包
 rm -rf ./feeds/kenzo/luci-app-quickstart
-
+rm -rf ./feeds/kenzo/luci-app-store
+rm -rf ./feeds/kenzo/luci-lib-taskd
