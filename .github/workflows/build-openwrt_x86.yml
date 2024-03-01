@@ -23,14 +23,14 @@ on:
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: openwrt-23.06
+  REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: openwrt_x86_240301.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   DIY_P3_SH: diy-part3.sh
   TZ: Asia/Shanghai
-  DEVICE: amd_x86
+  DEVICE: openwrt_x86
   UPLOAD_OUTPUT: true
 
 jobs:
@@ -100,7 +100,7 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
+        chmod +x $DIY_P3_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P3_SH
       
