@@ -97,8 +97,10 @@ jobs:
 
     - name: 替换修改过的eeprom
       run: |
+       mkdir openwrt/target/linux/mediatek/mt7981/base-files/lib/firmware
        cp eeprom/MT7981_iPAiLNA_EEPROM.bin  openwrt/target/linux/mediatek/mt7981/base-files/lib/firmware/MT7981_iPAiLNA_EEPROM.bin
-
+       sed -i 's#./files/mt7981-default-eeprom/MT7981_iPAiLNA_EEPROM.bin##' openwrt/package/mtk/drivers/mt_wifi/Makefile
+       
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
