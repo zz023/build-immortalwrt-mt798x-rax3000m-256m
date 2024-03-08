@@ -16,19 +16,31 @@ sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generat
 #删除默认登陆密码
 sed -i "/CYXluq4wUazHjmCDBCqXF/d" package/lean/default-settings/files/zzz-default-settings
 
-# Modify hostname
-#sed -i 's/ImmortalWrt/rax3000m_256m/g' package/base-files/files/bin/config_generate
+# 预置openclash内核
+mkdir -p files/etc/openclash/core
 
-#修改wifi名称（mtwifi-cfg）
-#sed -i 's/ImmortalWrt-2.4G/OpenWrt/g' package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
-#sed -i 's/ImmortalWrt-5G/OpenWrt5G/g' package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
 
-#修改闪存为256M版本(这是针对原厂128闪存来的，但又要编译256M固件来的）
-#sed -i 's/<0x580000 0x7200000>/<0x580000 0xee00000>/g' target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7981-cmcc-rax3000m.dts
-#sed -i 's/116736k/240128k/g' target/linux/mediatek/image/mt7981.mk
+# dev内核
+CLASH_DEV_URL="https://github.com/vernesong/OpenClash/raw/core/dev/dev/clash-linux-arm64.tar.gz"
+# premium内核
+CLASH_TUN_URL="https://github.com/vernesong/OpenClash/raw/core/dev/premium/clash-linux-arm64-2023.08.17-13-gdcc8d87.gz"
+# Meta内核版本
+CLASH_META_URL="https://github.com/vernesong/OpenClash/raw/core/dev/meta/clash-linux-arm64.tar.gz"
 
-#删除冲突的软件包
-#rm -rf ./package/istore
-#rm -rf ./feeds/kenzo/luci-app-quickstart
-#rm -rf ./feeds/kenzo/luci-app-store
-#rm -rf ./feeds/kenzo/luci-lib-taskd
+wget -qO- $CLASH_DEV_URL | gunzip -c > files/etc/openclash/core/clash
+wget -qO- $CLASH_TUN_URL | gunzip -c > files/etc/openclash/core/clash_tun
+wget -qO- $CLASH_META_URL | gunzip -c > files/etc/openclash/core/clash_meta
+# 给内核权限
+chmod +x files/etc/openclash/core/clash*
+
+# meta 要GeoIP.dat 和 GeoSite.dat
+GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
+wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
+
+# Country.mmdb
+COUNTRY_LITE_URL=https://raw.githubusercontent.com/alecthw/mmdb_china_ip_list/release/lite/Country.mmdb
+# COUNTRY_FULL_URL=https://raw.githubusercontent.com/alecthw/mmdb_china_ip_list/release/Country.mmdb
+wget -qO- $COUNTRY_LITE_URL > files/etc/openclash/Country.mmdb
+# wget -qO- $COUNTRY_FULL_URL > files/etc/openclash/Country.mmdb
